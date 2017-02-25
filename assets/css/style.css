@@ -1,0 +1,27 @@
+#title {
+	float: right;
+	font-size: 150px;
+	color: black;
+	font-family: 'Sansita', sans-serif;
+	margin-right: 30px;
+}
+
+#image {
+	font-size: 200px;
+	color: black;
+	font-family: 'Sansita', sans-serif;
+	text-align: center;
+}
+
+#word {
+	font-size: 75px;
+	color: black;
+	font-family: 'Sansita', sans-serif;
+	text-align: center;
+}
+
+#music {
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}
