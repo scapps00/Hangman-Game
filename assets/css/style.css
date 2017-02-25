@@ -25,3 +25,10 @@
 	display: block;
 	margin: 0 auto;
 }
+
+#pressany {
+	color: black;
+	font-family: 'Sansita', sans-serif;
+	text-align: center;
+	font-size: 40px;
+}
