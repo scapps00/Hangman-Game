@@ -53,7 +53,7 @@ blank = "";
 
 usedletsarray = [];
 
-guessnum.textContent = 10;
+guessnum.textContent = 1;
 
 usedlets.textContent = "";
 
@@ -64,10 +64,14 @@ nextround.textContent = "";
 randomizer = Math.floor(Math.random() * 20);
 
 if (randocounter.indexOf(randomizer) > -1) {
-	if (randocounter.length == 20) {
+	if (randocounter.length == 20 && numwins == 20) {
 		win.textContent = "YOU BEAT ALL THE CLUES";
 		megawin.volume = .2;
 		megawin.play();
+	}
+	else if (randocounter.length == 20) {
+		win.textContent = "CLICK HERE TO TRY AGAIN"
+		win.onclick = location.reload();
 	}
 	else {
 		gamerestart();
