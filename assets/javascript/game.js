@@ -19,6 +19,8 @@ var pressany = document.getElementById("pressany");
 var imagearray = ["assets/images/moon.jpg", "assets/images/jupiter.jpg", "assets/images/usagi.jpg", "assets/images/mamoru.jpg", "assets/images/chibiusa.jpg", "assets/images/cat.jpg", "assets/images/transform.jpg", "assets/images/saturn.jpg", "assets/images/hotaru.png", "assets/images/brooch.png"]
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var randocounter = [];
+var losesound = document.getElementById("losesound");
+var winsound = document.getElementById("winsound");
 
 //creates an array of blank spaces for each word
 var moonblank = [];
@@ -137,39 +139,45 @@ else {
 
 //actions when key is pressed
 document.onkeydown = function(event) {
-	pressany.textContent = "";
-	key = event.key;
-	if (alphabet.indexOf(key) > -1) {
-	for (i=0; i < wordforround.length; i++) {
-		if (key == wordarray[randomizer].charAt(i)) {
-			wordforround[i] = key;
+	if (win.textContent == "") {
+		pressany.textContent = "";
+		key = event.key;
+		if (alphabet.indexOf(key) > -1) {
+			for (i=0; i < wordforround.length; i++) {
+				if (key == wordarray[randomizer].charAt(i)) {
+					wordforround[i] = key;
+			}
 		}
-	}
-	blank = "";
-	for (i=0; i < wordarray[randomizer].length; i++) {
-		blank = blank + wordforround[i];
-	}
-	if (word.textContent == blank) {
-		if (usedletsarray.indexOf(key) == -1 && wordforround.indexOf(key) == -1) {
-				usedletsarray.push(key);
-				usedletsarray.sort();
-				guessnum.textContent = guessnum.textContent - 1;
-				usedlets.textContent = usedletsarray;
+		blank = "";
+		for (i=0; i < wordarray[randomizer].length; i++) {
+			blank = blank + wordforround[i];
 		}
-	}
-	word.textContent = blank;
-	if (blank == wordarray[randomizer]) {
-		win.textContent = "You win!";
-		nextround.textContent = "Click here for next round";
-		image.src = imagearray[randomizer];
-		numwins.textContent = Number(numwins.textContent) + 1;
-	}
-	if (guessnum.textContent == 0) {
-		win.textContent = "You lose!";
-		word.textContent = wordarray[randomizer];
-		nextround.textContent = "Click here for next round";
-		image.src = imagearray[randomizer];
-		numlose.textContent = Number(numlose.textContent) + 1;
+		if (word.textContent == blank) {
+				if (usedletsarray.indexOf(key) == -1 && wordforround.indexOf(key) == -1) {
+					usedletsarray.push(key);
+					usedletsarray.sort();
+					guessnum.textContent = guessnum.textContent - 1;
+					usedlets.textContent = usedletsarray;
+				}
+		}
+		word.textContent = blank;
+		if (blank == wordarray[randomizer]) {
+			win.textContent = "You win!";
+			winsound.volume = .2;
+			winsound.play();
+			nextround.textContent = "Click here for next round";
+			image.src = imagearray[randomizer];
+			numwins.textContent = Number(numwins.textContent) + 1;
+		}
+		if (guessnum.textContent == 0) {
+			win.textContent = "You lose!";
+			losesound.volume = .2;
+			losesound.play();
+			word.textContent = wordarray[randomizer];
+			nextround.textContent = "Click here for next round";
+			image.src = imagearray[randomizer];
+			numlose.textContent = Number(numlose.textContent) + 1;
+		}
 	}
 	}
 }
