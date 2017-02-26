@@ -6,8 +6,8 @@ var blank = "";
 var image = document.getElementById("image");
 var word = document.getElementById("word");
 var guessnum = document.getElementById("guessnum");
-var wordarray = ["moon", "jupiter", "usagi", "mamoru", "chibiusa", "cat", "transform", "saturn", "hotaru", "brooch"];
-var blankarray = new Array(10);
+var wordarray = ["moon", "jupiter", "usagi", "mamoru", "chibiusa", "cat", "transform", "saturn", "hotaru", "brooch", "zoisite", "arcade", "crystal", "circus", "pegasus", "guardians", "love", "evil", "princess", "rose"];
+var blankarray = new Array(20);
 var usedletsarray = [];
 var usedlets = document.getElementById("usedlets");
 var win = document.getElementById("win");
@@ -17,7 +17,7 @@ var nextround = document.getElementById("nextround");
 var randomizer = null;
 var wordforround = null;
 var pressany = document.getElementById("pressany");
-var imagearray = ["assets/images/moon.jpg", "assets/images/jupiter.jpg", "assets/images/usagi.jpg", "assets/images/mamoru.jpg", "assets/images/chibiusa.jpg", "assets/images/cat.jpg", "assets/images/transform.jpg", "assets/images/saturn.jpg", "assets/images/hotaru.png", "assets/images/brooch.png"]
+var imagearray = ["assets/images/moon.jpg", "assets/images/jupiter.jpg", "assets/images/usagi.jpg", "assets/images/mamoru.jpg", "assets/images/chibiusa.jpg", "assets/images/cat.jpg", "assets/images/transform.jpg", "assets/images/saturn.jpg", "assets/images/hotaru.png", "assets/images/brooch.png", "assets/images/zoisite.jpg", "assets/images/arcade.jpg", "assets/images/crystal.jpg", "assets/images/circus.jpg", "assets/images/pegasus.jpg", "assets/images/guardians.jpg", "assets/images/love.jpg", "assets/images/evil.jpg", "assets/images/princess.png", "assets/images/rose.jpg"]
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var randocounter = [];
 var losesound = document.getElementById("losesound");
@@ -61,10 +61,10 @@ win.textContent = "";
 
 nextround.textContent = "";
 
-randomizer = Math.floor(Math.random() * 10);
+randomizer = Math.floor(Math.random() * 20);
 
 if (randocounter.indexOf(randomizer) > -1) {
-	if (randocounter.length == 10) {
+	if (randocounter.length == 20) {
 		win.textContent = "YOU BEAT ALL THE CLUES";
 		megawin.volume = .2;
 		megawin.play();
