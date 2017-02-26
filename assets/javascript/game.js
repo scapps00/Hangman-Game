@@ -15,7 +15,10 @@ var numlose = document.getElementById("numlose");
 var nextround = document.getElementById("nextround");
 var randomizer = null;
 var wordforround = null;
+var pressany = document.getElementById("pressany");
 var imagearray = ["assets/images/moon.jpg", "assets/images/jupiter.jpg", "assets/images/usagi.jpg", "assets/images/mamoru.jpg", "assets/images/chibiusa.jpg", "assets/images/cat.jpg", "assets/images/transform.jpg", "assets/images/saturn.jpg", "assets/images/hotaru.png", "assets/images/brooch.png"]
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var randocounter = [];
 
 //creates an array of blank spaces for each word
 var moonblank = [];
@@ -82,6 +85,8 @@ var blankarray = [moonblank, jupiterblank, usagiblank, mamorublank, chibiusablan
 
 var randomizer = Math.floor(Math.random() * 10);
 
+randocounter.push(randomizer);
+
 var wordforround = blankarray[randomizer];
 
 for (i=0; i < wordarray[randomizer].length; i++) {
@@ -108,19 +113,33 @@ nextround.textContent = "";
 
 randomizer = Math.floor(Math.random() * 10);
 
-wordforround = blankarray[randomizer];
-
-for (i=0; i < wordarray[randomizer].length; i++) {
-	blank = blank + wordforround[i];
+if (randocounter.indexOf(randomizer) > -1) {
+	if (randocounter.length == 10) {
+		win.textContent = "YOU BEAT ALL THE CLUES";
+	}
+	else {
+		gamerestart();
+	}
 }
+else {
+	randocounter.push(randomizer);
 
-word.textContent = blank
-var key = "";
+	wordforround = blankarray[randomizer];
+
+	for (i=0; i < wordarray[randomizer].length; i++) {
+		blank = blank + wordforround[i];
+	}
+
+	word.textContent = blank
+	var key = "";
+}
 }
 
 //actions when key is pressed
 document.onkeydown = function(event) {
+	pressany.textContent = "";
 	key = event.key;
+	if (alphabet.indexOf(key) > -1) {
 	for (i=0; i < wordforround.length; i++) {
 		if (key == wordarray[randomizer].charAt(i)) {
 			wordforround[i] = key;
@@ -151,5 +170,6 @@ document.onkeydown = function(event) {
 		nextround.textContent = "Click here for next round";
 		image.src = imagearray[randomizer];
 		numlose.textContent = Number(numlose.textContent) + 1;
+	}
 	}
 }
