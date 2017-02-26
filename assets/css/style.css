@@ -94,3 +94,14 @@
 	text-align: center;
 	font-size: 60px;
 }
+
+#nextround {
+	color: black;
+	font-family: 'Sansita', sans-serif;
+	text-align: center;
+	font-size: 60px;
+}
+
+#spacer {
+	height: 150px;
+}
