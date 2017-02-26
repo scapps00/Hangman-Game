@@ -14,7 +14,7 @@
 	<p id="scores">Win: <span id="numwins">0</span> Lose: <span id="numlose">0</span></p>
 	<br>
 	<img src="assets/images/question.jpg" alt="image" id="image">
-	<p class="pulse" id="win"></p>
+	<div id="winfix"><p class="pulse" id="win"></p></div>
 	<p id="nextround" onclick="gamerestart()"></p>
 	<p id="word"></p>
 	<br>
@@ -32,6 +32,9 @@
 	</audio>
 	<audio id="winsound">
 		<source src="assets/sounds/win.wav" type="audio/wav">
+	</audio>
+	<audio id="megawin">
+		<source src="assets/sounds/megawin.mp3" type="audio/mp3">
 	</audio>
 	<div id="spacer"></div>
 <script type="text/javascript" src="assets/javascript/game.js"></script>

@@ -112,6 +112,13 @@ body {
 	height: 150px;
 }
 
-#losesound, #winsound {
+#losesound, #winsound, #megawin {
 	display: none;
+}
+
+/*fixes the pulsing win text from enlarging the screen */
+#winfix {
+	width: 600px;
+	display: block;
+	margin: 0 auto;
 }

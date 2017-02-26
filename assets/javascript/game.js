@@ -7,6 +7,7 @@ var image = document.getElementById("image");
 var word = document.getElementById("word");
 var guessnum = document.getElementById("guessnum");
 var wordarray = ["moon", "jupiter", "usagi", "mamoru", "chibiusa", "cat", "transform", "saturn", "hotaru", "brooch"];
+var blankarray = new Array(10);
 var usedletsarray = [];
 var usedlets = document.getElementById("usedlets");
 var win = document.getElementById("win");
@@ -21,69 +22,16 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 var randocounter = [];
 var losesound = document.getElementById("losesound");
 var winsound = document.getElementById("winsound");
+var megawin = document.getElementById("megawin");
 
-//creates an array of blank spaces for each word
-var moonblank = [];
-for (i=0; i < wordarray[0].length-1; i++) {
-	moonblank.push("_ ");
+//creates array of blank spaces for each word in the game
+for (j=0; j<blankarray.length; j++) {
+	blankarray[j] = [];
+	for (i=0; i<wordarray[j].length-1; i++) {
+		blankarray[j].push("_ ");
+	}
+	blankarray[j].push("_");
 }
-moonblank.push("_");
-
-var jupiterblank = [];
-for (i=0; i < wordarray[1].length-1; i++) {
-	jupiterblank.push("_ ");
-}
-jupiterblank.push("_");
-
-var usagiblank = [];
-for (i=0; i < wordarray[2].length-1; i++) {
-	usagiblank.push("_ ");
-}
-usagiblank.push("_");
-
-var mamorublank = [];
-for (i=0; i < wordarray[3].length-1; i++) {
-	mamorublank.push("_ ");
-}
-mamorublank.push("_");
-
-var chibiusablank = [];
-for (i=0; i < wordarray[4].length-1; i++) {
-	chibiusablank.push("_ ");
-}
-chibiusablank.push("_");
-
-var catblank = [];
-for (i=0; i < wordarray[5].length-1; i++) {
-	catblank.push("_ ");
-}
-catblank.push("_");
-
-var transformblank = [];
-for (i=0; i < wordarray[6].length-1; i++) {
-	transformblank.push("_ ");
-}
-transformblank.push("_");
-
-var saturnblank = [];
-for (i=0; i < wordarray[7].length-1; i++) {
-	saturnblank.push("_ ");
-}
-saturnblank.push("_");
-
-var hotarublank = [];
-for (i=0; i < wordarray[8].length-1; i++) {
-	hotarublank.push("_ ");
-}
-hotarublank.push("_");
-
-var broochblank = [];
-for (i=0; i < wordarray[9].length-1; i++) {
-	broochblank.push("_ ");
-}
-broochblank.push("_");
-
-var blankarray = [moonblank, jupiterblank, usagiblank, mamorublank, chibiusablank, catblank, transformblank, saturnblank, hotarublank, broochblank];
 
 var randomizer = Math.floor(Math.random() * 10);
 
@@ -118,6 +66,8 @@ randomizer = Math.floor(Math.random() * 10);
 if (randocounter.indexOf(randomizer) > -1) {
 	if (randocounter.length == 10) {
 		win.textContent = "YOU BEAT ALL THE CLUES";
+		megawin.volume = .2;
+		megawin.play();
 	}
 	else {
 		gamerestart();
