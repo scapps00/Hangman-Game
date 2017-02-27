@@ -25,7 +25,7 @@ var winsound = document.getElementById("winsound");
 var megawin = document.getElementById("megawin");
 
 //defines main function of the game
-function game() {
+function game(event) {
 	if (win.textContent == "") {
 		pressany.textContent = "";
 		key = event.key;
@@ -168,12 +168,12 @@ function gamerestart() {
 	}
 
 	document.onkeydown = function(event) {
-		game();
+		game(event);
 	}
 
 }
 
 //actions when key is pressed
 document.onkeydown = function(event) {
-	game();
+	game(event);
 }
