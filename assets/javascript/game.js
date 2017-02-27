@@ -24,6 +24,94 @@ var losesound = document.getElementById("losesound");
 var winsound = document.getElementById("winsound");
 var megawin = document.getElementById("megawin");
 
+//defines main function of the game
+function game() {
+	if (win.textContent == "") {
+		pressany.textContent = "";
+		key = event.key;
+		if (alphabet.indexOf(key) > -1) {
+			for (i=0; i < wordforround.length; i++) {
+				if (key == wordarray[randomizer].charAt(i)) {
+					wordforround[i] = key;
+			}
+		}
+		blank = "";
+		for (i=0; i < wordarray[randomizer].length; i++) {
+			blank = blank + wordforround[i];
+		}
+		if (word.textContent == blank) {
+				if (usedletsarray.indexOf(key) == -1 && wordforround.indexOf(key) == -1) {
+					usedletsarray.push(key);
+					usedletsarray.sort();
+					guessnum.textContent = guessnum.textContent - 1;
+					usedlets.textContent = usedletsarray;
+				}
+		}
+		word.textContent = blank;
+		if (blank == wordarray[randomizer]) {
+			if (randocounter.length == 20 && numwins.textContent == 19) {
+				image.src = imagearray[randomizer];
+				numwins.textContent = Number(numwins.textContent) + 1;
+				win.textContent = "YOU BEAT ALL THE CLUES";
+				nextround.textContent = "Press any key to play again";
+				document.onkeydown = function(event) {
+					location.reload();
+				}
+				megawin.volume = .2;
+				megawin.play();
+			}
+			else if (randocounter.length == 20) {
+				losesound.volume = .2;
+				losesound.play();
+				word.textContent = wordarray[randomizer];
+				image.src = imagearray[randomizer];
+				numlose.textContent = Number(numlose.textContent) + 1;
+				win.textContent = "PRESS ANY KEY TO TRY AGAIN";
+				document.onkeydown = function(event) {
+					location.reload();
+				}
+			}
+			else {
+				win.textContent = "You win!";
+				winsound.volume = .2;
+				winsound.play();
+				nextround.textContent = "Press any key for next round";
+				document.onkeydown = function(event) {
+					gamerestart();
+				}
+				image.src = imagearray[randomizer];
+				numwins.textContent = Number(numwins.textContent) + 1;
+			}
+		}
+		if (guessnum.textContent == 0) {
+			if (randocounter.length == 20) {
+				losesound.volume = .2;
+				losesound.play();
+				word.textContent = wordarray[randomizer];
+				image.src = imagearray[randomizer];
+				numlose.textContent = Number(numlose.textContent) + 1;
+				win.textContent = "PRESS ANY KEY TO TRY AGAIN";
+				document.onkeydown = function(event) {
+					location.reload();
+				}
+			}
+			else {
+				win.textContent = "You lose!";
+				losesound.volume = .2;
+				losesound.play();
+				word.textContent = wordarray[randomizer];
+				nextround.textContent = "Press any key for next round";
+				document.onkeydown = function(event) {
+					gamerestart();
+				}
+				image.src = imagearray[randomizer];
+				numlose.textContent = Number(numlose.textContent) + 1;
+			}
+		}
+	}
+	}
+}
+
 //creates array of blank spaces for each word in the game
 for (j=0; j<blankarray.length; j++) {
 	blankarray[j] = [];
@@ -49,89 +137,43 @@ var key = "";
 //defining restart
 function gamerestart() {
 
-blank = "";
+	blank = "";
 
-usedletsarray = [];
+	usedletsarray = [];
 
-guessnum.textContent = 1;
+	guessnum.textContent = 15;
 
-usedlets.textContent = "";
+	usedlets.textContent = "";
 
-win.textContent = "";
+	win.textContent = "";
 
-nextround.textContent = "";
+	nextround.textContent = "";
 
-randomizer = Math.floor(Math.random() * 20);
+	randomizer = Math.floor(Math.random() * 20);
 
-if (randocounter.indexOf(randomizer) > -1) {
-	if (randocounter.length == 20 && numwins == 20) {
-		win.textContent = "YOU BEAT ALL THE CLUES";
-		megawin.volume = .2;
-		megawin.play();
-	}
-	else if (randocounter.length == 20) {
-		win.textContent = "CLICK HERE TO TRY AGAIN"
-		win.onclick = location.reload();
+	if (randocounter.indexOf(randomizer) > -1) {
+			gamerestart();
 	}
 	else {
-		gamerestart();
+		randocounter.push(randomizer);
+
+		wordforround = blankarray[randomizer];
+
+		for (i=0; i < wordarray[randomizer].length; i++) {
+			blank = blank + wordforround[i];
+		}
+
+		word.textContent = blank;
+		var key = "";
 	}
-}
-else {
-	randocounter.push(randomizer);
 
-	wordforround = blankarray[randomizer];
-
-	for (i=0; i < wordarray[randomizer].length; i++) {
-		blank = blank + wordforround[i];
+	document.onkeydown = function(event) {
+		game();
 	}
 
-	word.textContent = blank
-	var key = "";
-}
 }
 
 //actions when key is pressed
 document.onkeydown = function(event) {
-	if (win.textContent == "") {
-		pressany.textContent = "";
-		key = event.key;
-		if (alphabet.indexOf(key) > -1) {
-			for (i=0; i < wordforround.length; i++) {
-				if (key == wordarray[randomizer].charAt(i)) {
-					wordforround[i] = key;
-			}
-		}
-		blank = "";
-		for (i=0; i < wordarray[randomizer].length; i++) {
-			blank = blank + wordforround[i];
-		}
-		if (word.textContent == blank) {
-				if (usedletsarray.indexOf(key) == -1 && wordforround.indexOf(key) == -1) {
-					usedletsarray.push(key);
-					usedletsarray.sort();
-					guessnum.textContent = guessnum.textContent - 1;
-					usedlets.textContent = usedletsarray;
-				}
-		}
-		word.textContent = blank;
-		if (blank == wordarray[randomizer]) {
-			win.textContent = "You win!";
-			winsound.volume = .2;
-			winsound.play();
-			nextround.textContent = "Click here for next round";
-			image.src = imagearray[randomizer];
-			numwins.textContent = Number(numwins.textContent) + 1;
-		}
-		if (guessnum.textContent == 0) {
-			win.textContent = "You lose!";
-			losesound.volume = .2;
-			losesound.play();
-			word.textContent = wordarray[randomizer];
-			nextround.textContent = "Click here for next round";
-			image.src = imagearray[randomizer];
-			numlose.textContent = Number(numlose.textContent) + 1;
-		}
-	}
-	}
+	game();
 }
