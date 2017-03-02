@@ -2,6 +2,10 @@ body {
 	background-attachment: fixed;
 }
 
+#top {
+	width: 1350px;
+}
+
 #title {
 	float: right;
 	font-size: 150px;
