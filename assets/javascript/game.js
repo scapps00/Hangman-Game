@@ -1,7 +1,9 @@
+//establish music
 var music = document.getElementById("music");
 music.loop = true;
 music.volume = .05;
 
+//establish all variables, including array of answers
 var blank = "";
 var image = document.getElementById("image");
 var word = document.getElementById("word");
