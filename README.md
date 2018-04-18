@@ -24,5 +24,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Thanks to the UNC Coding Bootcamp for the assignment
 * Thanks for meyerweb.com for the reset code in reset.css
 * Thanks to [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) for the README template
+* All images and sounds copyright Naoko Takeuchi, [Toei Animation](http://corp.toei-anim.co.jp/en/), and [Kodansha Comics](https://kodanshacomics.com/) and used under noncommerical Fair Use.
 
 
